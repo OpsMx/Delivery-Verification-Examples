@@ -17,7 +17,7 @@ data:
       canaryMetricScope: "rollout-app,{{env.LATEST_POD_HASH}}"
       metricTemplateName: "newrelic-metric-verifier"
       metricTemplateVersion: "v1.0"
-      logScopeVariables: "kubernetes.pod_name"
+      logScopeVariables: "resource.labels.pod_name"
       baselineLogScope: ".*{{env.STABLE_POD_HASH}}.*"
       canaryLogScope: ".*{{env.LATEST_POD_HASH}}.*"
       logTemplateName: "stackdriver-log-verifier"
