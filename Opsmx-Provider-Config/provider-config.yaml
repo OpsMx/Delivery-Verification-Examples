@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: opsmx-provider-config
+data:
+  providerConfig: |
+    application: rollout-app
+    lifetimeMinutes: 30
+    intervalTime: 10
+    lookBackType: sliding
+    gitops: true
+    passScore: 80
+    serviceList:
+    - serviceName: rollout-app-svc
+      metricScopeVariables: "${app_key},${host_key}"
+      baselineMetricScope: "rollout-app,{{env.STABLE_POD_HASH}}"
+      canaryMetricScope: "rollout-app,{{env.LATEST_POD_HASH}}"
+      metricTemplateName: "newrelic-metric-verifier"
+      metricTemplateVersion: "v1.0"
+      logScopeVariables: "kubernetes.pod_name"
+      baselineLogScope: ".*{{env.STABLE_POD_HASH}}.*"
+      canaryLogScope: ".*{{env.LATEST_POD_HASH}}.*"
+      logTemplateName: "stackdriver-log-verifier"
+      logTemplateVersion: "v1.0"
