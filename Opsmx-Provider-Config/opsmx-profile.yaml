@@ -4,7 +4,7 @@ metadata:
   name: opsmx-profile
 type: Opaque
 data:
-  cd-integration: ZmFsc2U=
-  source-name: YXJnb3JvbGxvdXRzLXByb2Q=
-  gate-url: aHR0cHM6Ly9pc2QtcHJvZC5vcHNteC5uZXQ=
+  cdIntegration: ZmFsc2U=
+  sourceName: YXJnb3JvbGxvdXRzLXByb2Q=
+  opsmxIsdUrl: aHR0cHM6Ly9pc2QtcHJvZC5vcHNteC5uZXQ=
   user: YWRtaW4=
