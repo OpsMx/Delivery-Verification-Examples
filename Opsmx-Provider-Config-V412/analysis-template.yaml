@@ -55,5 +55,5 @@ spec:
                         name: elasticsearch-log-verifier-tagged
                 - name: secret-config-volume
                   secret:
-                    secretName: opsmx-ds-profile
+                    secretName: opsmx-profile
                     optional: false   
