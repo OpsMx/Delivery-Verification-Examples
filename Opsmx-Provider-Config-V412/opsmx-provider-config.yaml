@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: opsmx-provider-config
+data:
+  providerConfig: |
+    application: canary-demo
+    lifetimeMinutes: 3
+    gitops: true
+    passScore: 80
+    serviceList: 
+    - metricTemplateName: "prometheus-app-health-verifier"
+      metricScopeVariables: "${namespace_key},${pod_key},${app_name}"
+      baselineMetricScope: "dsargo,.*{{env.STABLE_POD_HASH}}.*,canary-demo"
+      canaryMetricScope: "dsargo,.*{{env.LATEST_POD_HASH}}.*,canary-demo"
+    - logTemplateName: "elasticsearch-log-verifier"
+      logScopeVariables: "kubernetes.pod_name"
+      baselineLogScope: ".*{{env.STABLE_POD_HASH}}.*"
+      canaryLogScope: ".*{{env.LATEST_POD_HASH}}.*"
+      metricTemplateName: "prometheus-jvm-health-verifier"
+      metricScopeVariables: "${namespace_key},${pod_key},${container_key},${app_key}"
+      baselineMetricScope: "dsargo,.*{{env.STABLE_POD_HASH}}.*,canary-demo-ctr,canary-demo"
+      canaryMetricScope: "dsargo,.*{{env.LATEST_POD_HASH}}.*,canary-demo-ctr,canary-demo"
+    - logTemplateName: "elasticsearch-log-verifier-tagged"
+      logScopeVariables: "kubernetes.pod_name"
+      baselineLogScope: ".*{{env.STABLE_POD_HASH}}.*"
+      canaryLogScope: ".*{{env.LATEST_POD_HASH}}.*"
