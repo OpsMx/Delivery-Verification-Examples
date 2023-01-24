@@ -8,7 +8,7 @@ metadata:
     ingress.kubernetes.io/app-root: /
 spec:
   rules:
-  - host: canary-demo-issuegen.ds.opsmx.org
+  - host: myapp.demo.opsmx.org
     http:
       paths:
       - path: /
