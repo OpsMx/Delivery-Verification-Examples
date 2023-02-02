@@ -17,7 +17,7 @@ spec:
                 serviceAccountName: opsmx-provider-account
                 containers:
                 - name: opsmx-provider
-                  image: 'quay.io/opsmxpublic/argo-isd-metric-provider-job:v1.1.4' 
+                  image: 'quay.io/opsmxpublic/argo-isd-metric-provider-job:v1.1.9' 
                   imagePullPolicy: Always
                   env:
                     - name: MY_POD_NAME
