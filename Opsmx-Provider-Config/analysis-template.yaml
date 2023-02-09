@@ -45,7 +45,7 @@ spec:
                   projected:
                     sources:
                     - configMap:
-                        name: metric-verifier
+                        name: metric-verifier #This should match with your log template name
                     - configMap:
                         name: log-verifier
                 - name: secret-config-volume
