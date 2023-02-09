@@ -1,20 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AnalysisTemplate
 metadata:
-  name: opsmx-analysis
+  name: opsmx-analysis                                            ## This AnalysisTemplate is used in rollout.yaml
 spec:
   args:
     - name: canary-hash
     - name: baseline-hash
   metrics:
-    - name: opsmx-analysis-score
+    - name: opsmx-analysis-score                                  ## Match it with the above AnalysisTemplate name.
       provider:
         job:
           spec:
             backoffLimit: 2
             template:
               spec:
-                serviceAccountName: opsmx-provider-account
+                serviceAccountName: opsmx-provider-account        ## Match it with Service Account name
                 containers:
                 - name: opsmx-provider
                   image: 'quay.io/opsmxpublic/argo-isd-metric-provider-job:v1.1.9' 
@@ -40,15 +40,15 @@ spec:
                 volumes:
                 - name: provider-config-volume
                   configMap:
-                    name: opsmx-provider-config
+                    name: opsmx-provider-config     ## Match it with Provider ConfigMap Name 
                 - name: metric-config-volume
                   projected:
                     sources:
                     - configMap:
-                        name: metric-verifier #This should match with your log template name
+                        name: metric-verifier       ## Match it with the Metric Template name
                     - configMap:
-                        name: log-verifier
+                        name: log-verifier          ## Match it with the Metric Template name
                 - name: secret-config-volume
                   secret:
-                    secretName: opsmx-profile
+                    secretName: opsmx-profile       ## Match it with the Kubernetes Secret name 
                     optional: false
